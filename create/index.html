@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/84d9821b5f.js" crossorigin="anonymous"></script>
+    <script type="module" src="/main.js" defer></script>
+    <title>Create Listing | Auction House</title>
+  </head>
+  <body>
+    <div id="navbar" class="">
+      <img src="" alt="">
+
+      <form>
+        <input type="text" placeholder="Search...">
+        <button>
+          <i class="fa-duotone fa-regular fa-magnifying-glass"></i>
+        </button>
+      </form>
+
+      <button>
+        <i class="fa-regular fa-bars"></i>
+      </button>
+
+    </div>
+    <main class="">
+
+        <div class="create-listing-form">
+            <form action="/submit-listing" method="POST">
+                <h2>Create a New Listing</h2>
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required placeholder="Enter the title of your listing" />
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" placeholder="Enter a description (optional)"></textarea>
+                </div>
+                <div>
+                    <label for="tags">Tags</label>
+                    <input type="text" id="tags" name="tags" placeholder="Enter tags, separated by commas (e.g., 'tag1, tag2')" />
+                </div>
+                <div>
+                    <label for="media-url">Media URL</label>
+                    <input type="url" id="media-url" name="media-url" placeholder="Enter media URL (e.g., https://example.com/image.jpg)" />
+                </div>
+                <div>
+                    <label for="media-alt">Media Alt Text</label>
+                    <input type="text" id="media-alt" name="media-alt" placeholder="Enter alt text for the media (optional)" />
+                </div>
+                <div>
+                    <label for="endsAt">End Date</label>
+                    <input type="datetime-local" id="endsAt" name="endsAt" required />
+                </div>
+                <button type="submit">Create Listing</button>
+            </form>
+        </div>
+        
+
+    </main>
+    <footer>
+
+    </footer>
+
+  </body>
+</html>
