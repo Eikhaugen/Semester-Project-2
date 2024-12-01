@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/84d9821b5f.js" crossorigin="anonymous"></script>
+    <script type="module" src="/main.js" defer></script>
+    <title>Login | Auction House</title>
+  </head>
+  <body>
+    <div id="navbar" class="">
+      <img src="" alt="">
+
+      <form>
+        <input type="text" placeholder="Search...">
+        <button>
+          <i class="fa-duotone fa-regular fa-magnifying-glass"></i>
+        </button>
+      </form>
+
+      <button>
+        <i class="fa-regular fa-bars"></i>
+      </button>
+
+    </div>
+    <main class="">
+
+        <div class="login-form">
+            <form action="/submit-login" method="POST">
+                <h2>Log In</h2>
+                <div>
+                    <label for="email-or-username">Email or Username</label>
+                    <input type="text" id="email-or-username" name="email-or-username" required placeholder="Enter your email or username" />
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password" />
+                </div>
+                <button type="submit">Log In</button>
+                <p>Don't have an account? <a href="../register/">Sign up here</a>.</p>
+            </form>
+        </div>
+
+    </main>
+    <footer>
+
+    </footer>
+
+  </body>
+</html>
