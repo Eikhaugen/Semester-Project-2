@@ -26,31 +26,40 @@
     </div>
     <main class="">
 
-        <div class="signup-form">
-            <form action="/submit-signup" method="POST">
-                <h2>Sign Up</h2>
-                <div>
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required placeholder="Enter your username" />
-                </div>
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email" />
-                </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="Create a password" />
-                </div>
-                <div>
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password" />
-                </div>
-                <button type="submit">Sign Up</button>
-                <p>Already registered? <a href="../login/">Log in here</a>.</p>
-            </form>
-        </div>
+      <div id="signup-form">
+        <form>
+            <h2>Sign Up</h2>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your username" maxlength="20" pattern="^[\w]+$" title="Please enter a username using only letters and numbers"/>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email" pattern="^[\w\-.]+@(stud\.)?noroff\.no$" title="Please enter a valid noroff.no or stud.noroff.no address"/>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Create a password" minlength="8"/>
+            </div>
+            <div>
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password" minlength="8"/>
+            </div>
+            <div>
+                <label for="avatar-url">Avatar URL</label>
+                <input type="url" id="avatar-url" name="avatar-url" placeholder="Link to your avatar image (optional)"/>
+            </div>
+            <div>
+                <label for="banner-url">Banner URL</label>
+                <input type="url" id="banner-url" name="banner-url" placeholder="Link to your banner image (optional)"/>
+            </div>
+            <button type="submit">Sign Up</button>
+            <p>Already registered? <a href="../login/">Log in here</a>.</p>
+        </form>
+    </div>
+    
+    
         
-
     </main>
     <footer>
 
