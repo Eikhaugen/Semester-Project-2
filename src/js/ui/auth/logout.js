@@ -13,8 +13,10 @@ export async function logout() {
         window.location.href = "/";
     } catch (error) {
         console.error("Failed to log out:", error);
+        throw error;
     }
 }
+
 
 /**
  * Adds a click event listener to the button with the id 'logout-btn'.
@@ -23,11 +25,11 @@ export async function logout() {
  * @returns {void}
  */
 export function setLogoutListener() {
-    const logoutButton = document.getElementById('logout-btn');
-
+    const logoutButton = document.getElementById("logout-btn");
     if (logoutButton) {
-        logoutButton.addEventListener('click', logout);
+        logoutButton.addEventListener("click", logout);
     } else {
         console.warn("Logout button not found.");
     }
 }
+
