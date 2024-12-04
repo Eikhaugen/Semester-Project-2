@@ -9,7 +9,7 @@ export const API_AUTH_REGISTER = `${API_AUTH}/register`;
 export const API_AUTH_KEY = `${API_AUTH}/create-api-key`;
 
 // Auction House Endpoints
-export const API_AUCTION = `${API_BASE}/auction-house`;
+export const API_AUCTION = `${API_BASE}/auction`;
 
 // Listings Endpoints
 export const API_AUCTION_LISTINGS = `${API_AUCTION}/listings`;
