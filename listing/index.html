@@ -9,25 +9,43 @@
     <title>Auction House</title>
   </head>
   <body>
-    <nav id="nav-menu">
-      <ul>
-        <li>
-          <a href="../index.html">Home</a>
-        </li>
-        <li>
-          <a href="../create/">Create Listing</a>
-        </li>
-        <li>
-          <a href="../profile/">Profile</a>
-        </li>
-        <li>
-          <button id="logout-btn">
-            Logout
-          </button>
-        </li>
+    <div id="navbar" class="">
+      <img src="" alt="">
 
-      </ul>
-    </nav>
+      <form>
+        <input type="text" placeholder="Search...">
+        <button>
+          <i class="fa-duotone fa-regular fa-magnifying-glass"></i>
+        </button>
+      </form>
+
+      <nav id="nav-menu" class="hidden">
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="create/">Create Listing</a>
+          </li>
+          <li>
+            <a href="profile/">Profile</a>
+          </li>
+          <li>
+            <button id="logout-btn">
+              Logout
+            </button>
+          </li>
+
+        </ul>
+      </nav>
+
+      <a id="login-btn" href="auth/login/"><i class="fa-regular fa-right-to-bracket"></i></a>
+
+      <button id="navbar-toggle">
+        <i class="fa-regular fa-bars"></i>
+      </button>
+
+    </div>
     <main class="">
       <div id="listing-container">
         <div class="" href="">
