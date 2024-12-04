@@ -4,6 +4,7 @@ import { toggleMenu } from '../../ui/toggleMenu';
 import { logout } from '../../ui/auth/logout';
 import { renderListings } from "../../ui/listing/renderListings";
 import { fetchListings } from "../../api/listing/read";
+import { setupSearch } from "../../ui/listing/searchListing";
 
 // DOM Elements
 const navbarToggle = document.getElementById("navbar-toggle");
@@ -12,9 +13,11 @@ const logOutBTN = document.getElementById("logout-btn");
 const container = document.getElementById("listings-container");
 
 // Initialize features and guards
-initializeMenu();
-updateLayout();
-initializeListings(); // Call the new function to fetch and render listings
+    initializeMenu();
+    updateLayout();
+    initializeListings();
+    setupSearch();
+
 
 // Functions
 
