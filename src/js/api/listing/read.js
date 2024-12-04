@@ -35,7 +35,7 @@ export async function fetchListings() {
     };
 
     try {
-        const response = await fetch(`${API_AUCTION_LISTINGS}?_bids=true`, requestOptions);
+        const response = await fetch(`${API_AUCTION_LISTINGS}?_bids=true&_active=true&limit=24`, requestOptions);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch listings: ${response.statusText}`);
