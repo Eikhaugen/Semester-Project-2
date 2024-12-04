@@ -32,7 +32,7 @@ export default [
       ...js.configs.recommended.rules,
       eqeqeq: 'error',
       curly: 'error',
-      'no-console': 'warn',
+      "no-console": ["error", {"allow": ["error", "warn"]}],
       'no-unused-vars': 'warn',
       'no-var': 'error',
       'prefer-const': 'error',

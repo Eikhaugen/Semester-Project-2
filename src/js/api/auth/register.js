@@ -18,7 +18,7 @@ import { API_AUTH_REGISTER } from "../constants";
  * @returns {Promise<Object>} A promise that resolves with the server's response in JSON format.
  * @throws Will throw an error if the fetch request fails.
  */
-export async function register({ name, email, password, bio, banner, avatar }) {
+export async function register({ name, email, password, banner, avatar }) {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 

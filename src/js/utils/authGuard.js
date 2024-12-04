@@ -4,7 +4,7 @@
  * @returns {boolean} True if authenticated, otherwise false.
  */
 export function isLoggedIn() {
-  return !!localStorage.accessToken; // Returns true if accessToken exists, otherwise false
+  return !!localStorage.accessToken;
 }
 
 /**

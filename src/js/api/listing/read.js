@@ -42,7 +42,6 @@ export async function fetchListings() {
         }
 
         const { data } = await response.json();
-        console.log("Fetched Listings:", data); 
         return data; 
     } catch (error) {
         console.error("Error fetching listings:", error);
@@ -92,7 +91,6 @@ export async function searchListings(query) {
         }
 
         const { data } = await response.json();
-        console.log("Fetched Listings:", data); 
         return data; 
     } catch (error) {
         console.error("Error fetching listings:", error);

@@ -29,7 +29,6 @@ export async function setKey(accessToken) {
         return;
     }
     localStorage.setItem('accessToken', accessToken);
-    console.log("Access token saved successfully.");
 }
 
 /**
@@ -43,7 +42,6 @@ export async function setKey(accessToken) {
 export async function clearKey() {
     if (localStorage.getItem('accessToken')) {
         localStorage.removeItem('accessToken');
-        console.log("Access token cleared successfully.");
     } else {
         console.warn("No access token found to clear.");
     }
