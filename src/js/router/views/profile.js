@@ -2,15 +2,22 @@
 import { isLoggedIn } from "../../utils/authGuard";
 import { toggleMenu } from '../../ui/toggleMenu';
 import { logout } from '../../ui/auth/logout';
+import { renderListings } from "../../ui/listing/renderListings";
+import { fetchListings } from "../../api/listing/read";
+import { setupSearch } from "../../ui/listing/searchListing";
 
 // DOM Elements
 const navbarToggle = document.getElementById("navbar-toggle");
 const navMenu = document.getElementById("nav-menu");
 const logOutBTN = document.getElementById("logout-btn");
+const container = document.getElementById("listings-container");
 
 // Initialize features and guards
-initializeMenu();
-updateLayout();
+    initializeMenu();
+    updateLayout();
+    initializeListings();
+    setupSearch();
+
 
 // Functions
 
@@ -32,7 +39,7 @@ function updateLayout() {
     const loggedIn = isLoggedIn();
 
     const loginBtn = document.getElementById("login-btn");
-    const navMenuBtn = document.getElementById("navbar-toggle")
+    const navMenuBtn = document.getElementById("navbar-toggle");
 
     if (loggedIn) {
         loginBtn.classList.add("hidden");
@@ -49,6 +56,16 @@ function updateLayout() {
     }
 }
 
+/**
+ * Fetches and renders the listings.
+ */
+async function initializeListings() {
+    try {
+        const listings = await fetchListings();
+        renderListings(listings, container);
+    } catch (error) {
+        console.error('Error fetching listings:', error);
+    }
+}
 
-logOutBTN.addEventListener("click", logout)
-
+logOutBTN.addEventListener("click", logout);
