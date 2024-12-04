@@ -12,23 +12,31 @@
     <div id="navbar" class="">
       <img src="" alt="">
 
-      <form>
-        <input type="text" placeholder="Search...">
-        <button>
-          <i class="fa-duotone fa-regular fa-magnifying-glass"></i>
-        </button>
+      <form id="search-listings-form">
+        <input id="search-listings-input" type="text" placeholder="Search...">
+        <button type="submit">Search</button>
       </form>
+
+      <div id="search-results" class="hidden">
+        <a href="">
+          <img src="" alt="">
+          <div>
+            <h2>Title</h2>
+          </div>
+        </a>
+
+      </div>
 
       <nav id="nav-menu" class="hidden">
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="../">Home</a>
           </li>
           <li>
-            <a href="create/">Create Listing</a>
+            <a href="../create/">Create Listing</a>
           </li>
           <li>
-            <a href="profile/">Profile</a>
+            <a href="../profile/">Profile</a>
           </li>
           <li>
             <button id="logout-btn">
