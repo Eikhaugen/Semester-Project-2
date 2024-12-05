@@ -1,4 +1,4 @@
-import { API_AUCTION_LISTINGS,API_AUCTION_SEARCH_LISTINGS } from "../constants";
+import { API_AUCTION_LISTINGS,API_AUCTION_SEARCH_LISTINGS, API_AUCTION_LISTINGS_BY_ID } from "../constants";
 import { headers } from "../headers";
 
 /**
@@ -85,6 +85,55 @@ export async function searchListings(query) {
 
     try {
         const response = await fetch(`${API_AUCTION_SEARCH_LISTINGS(query)}&_active=true&limit=5`, requestOptions);
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch listings: ${response.statusText}`);
+        }
+
+        const { data } = await response.json();
+        return data; 
+    } catch (error) {
+        console.error("Error fetching listings:", error);
+        throw error;
+    }
+}
+
+/**
+ * Fetches a specific auction listing by its ID, including bid details for the listing.
+ * 
+ * @async
+ * @param {string|number} id - The unique ID of the listing to fetch.
+ * @returns {Promise<Object>} - A promise that resolves to the listing object with the specified ID.
+ * The listing object may include the following properties:
+ * - `id`: The unique ID of the listing.
+ * - `title`: The title of the listing.
+ * - `description`: The description of the listing.
+ * - `media`: An array of media objects with `url` and `alt` text.
+ * - `_bids`: An array of bid objects associated with the listing, each with properties like:
+ *   - `amount`: The amount of the bid.
+ *   - `bidder`: The bidder's details.
+ * 
+ * @throws {Error} - Throws an error if the network request fails, the response is not OK, or the listing is not found.
+ * 
+ * @example
+ * try {
+ *     const listing = await fetchListingsByID(123);
+ *     console.log(listing);
+ * } catch (error) {
+ *     console.error("Error fetching listing by ID:", error);
+ * }
+ */
+export async function fetchListingsByID(id) {
+    const myHeaders = headers();
+
+    const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+    };
+
+    try {
+        const response = await fetch(`${API_AUCTION_LISTINGS_BY_ID(id)}?_bids=true&_active=true&limit=24`, requestOptions);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch listings: ${response.statusText}`);
