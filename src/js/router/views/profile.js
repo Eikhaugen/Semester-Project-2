@@ -3,7 +3,8 @@ import { isLoggedIn } from "../../utils/authGuard";
 import { toggleMenu } from '../../ui/toggleMenu';
 import { logout } from '../../ui/auth/logout';
 import { renderListings } from "../../ui/listing/renderListings";
-import { fetchListings } from "../../api/listing/read";
+import { fetchListingsByID } from "../../api/listing/read";
+import { getLoggedInUserID } from "../../utils/loggedInUserID";
 import { setupSearch } from "../../ui/listing/searchListing";
 
 // DOM Elements
@@ -61,7 +62,9 @@ function updateLayout() {
  */
 async function initializeListings() {
     try {
-        const listings = await fetchListings();
+        const userID = await getLoggedInUserID();
+        console.log(userID)
+        const listings = await fetchListingsByID(userID);
         renderListings(listings, container);
     } catch (error) {
         console.error('Error fetching listings:', error);
