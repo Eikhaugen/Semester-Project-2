@@ -6,18 +6,22 @@ import { renderListings } from "../../ui/listing/renderListings";
 import { fetchListingsByID } from "../../api/listing/read";
 import { getLoggedInUserID } from "../../utils/loggedInUserID";
 import { setupSearch } from "../../ui/listing/searchListing";
+import { readProfile } from "../../api/profile/read";
+import { renderProfile } from "../../ui/profile/renderProfile";
 
 // DOM Elements
 const navbarToggle = document.getElementById("navbar-toggle");
 const navMenu = document.getElementById("nav-menu");
 const logOutBTN = document.getElementById("logout-btn");
 const container = document.getElementById("listings-container");
+const profileSection = document.getElementById("profile-section");
 
 // Initialize features and guards
     initializeMenu();
     updateLayout();
     initializeListings();
     setupSearch();
+    initializeProfile();
 
 
 // Functions
@@ -63,11 +67,23 @@ function updateLayout() {
 async function initializeListings() {
     try {
         const userID = await getLoggedInUserID();
-        console.log(userID)
         const listings = await fetchListingsByID(userID);
         renderListings(listings, container);
     } catch (error) {
         console.error('Error fetching listings:', error);
+    }
+}
+
+/**
+ * Fetches and renders the profile.
+ */
+async function initializeProfile() {
+    try {
+        const userID = await getLoggedInUserID();
+        const profileData = await readProfile(userID);
+        renderProfile(profileData, profileSection);
+    } catch (error) {
+        console.error('Error fetching profile:', error);
     }
 }
 
