@@ -1,6 +1,7 @@
 import { API_AUTH_LOGIN } from "../constants";
 import { headers } from "../headers.js";
 import { setKey } from "./key.js";
+import { setLoggedInUserID } from "../../utils/loggedInUserID.js";
 
 /**
  * Logs in a user by sending a POST request to the login API.
@@ -45,6 +46,13 @@ export async function login({ email, password }) {
             await setKey(accessToken);
         } else {
             console.warn("No access token found in the response.");
+        }
+
+        const userID = result?.data?.name;
+        if (userID) {
+            await setLoggedInUserID(userID);
+        } else {
+            console.warn("No user ID found in the response.");
         }
 
         return result.data;

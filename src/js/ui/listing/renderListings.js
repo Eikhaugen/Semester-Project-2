@@ -9,7 +9,7 @@ export function renderListings(listings, container) {
         if (isLoggedIn()) {
             listingElement = document.createElement("a");
             listingElement.className = "listing-link"; 
-            listingElement.href = `listing/?id=${listing.id}`;
+            listingElement.href = `/listing/?id=${listing.id}`;
         } else {
             listingElement = document.createElement("div");
             listingElement.className = "listing-div"; 
