@@ -21,6 +21,6 @@ export function setLoggedInUserID(userID) {
  *
  * @returns {string|null} The username if present, otherwise null.
  */
-export function getLoggedInUserName() {
+export function getLoggedInUserID() {
     return localStorage.getItem('userID');
 }
