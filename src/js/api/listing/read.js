@@ -1,4 +1,5 @@
-import { API_AUCTION_LISTINGS,API_AUCTION_SEARCH_LISTINGS, API_AUCTION_LISTINGS_BY_ID } from "../constants";
+import { API_AUCTION_LISTINGS,API_AUCTION_SEARCH_LISTINGS, API_AUCTION_PROFILE_LISTINGS } from "../constants";
+import { getKey } from "../auth/key";
 import { headers } from "../headers";
 
 /**
@@ -125,6 +126,8 @@ export async function searchListings(query) {
  */
 export async function fetchListingsByID(id) {
     const myHeaders = headers();
+    const token = await getKey(); 
+    myHeaders.append("Authorization", `Bearer ${token}`); 
 
     const requestOptions = {
         method: "GET",
@@ -133,7 +136,7 @@ export async function fetchListingsByID(id) {
     };
 
     try {
-        const response = await fetch(`${API_AUCTION_LISTINGS_BY_ID(id)}?_bids=true&_active=true&limit=24`, requestOptions);
+        const response = await fetch(`${API_AUCTION_PROFILE_LISTINGS(id)}`, requestOptions);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch listings: ${response.statusText}`);
