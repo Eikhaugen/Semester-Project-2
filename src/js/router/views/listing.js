@@ -2,15 +2,17 @@
 import { isLoggedIn } from "../../utils/authGuard";
 import { toggleMenu } from '../../ui/toggleMenu';
 import { logout } from '../../ui/auth/logout';
-import { renderListings } from "../../ui/listing/renderListings";
-import { fetchListings } from "../../api/listing/read";
+import { renderSingleListing } from "../../ui/listing/renderSingleListing";
+import { fetchSingleListing } from "../../api/listing/read";
 import { setupSearch } from "../../ui/listing/searchListing";
+import { getListingIDFromURL } from '../../utils/getListingIDfromURL'
 
 // DOM Elements
 const navbarToggle = document.getElementById("navbar-toggle");
 const navMenu = document.getElementById("nav-menu");
 const logOutBTN = document.getElementById("logout-btn");
-const container = document.getElementById("listings-container");
+const listingContainer = document.getElementById("listing-container");
+const bidsContainer = document.getElementById("listing-bids-container");
 
 // Initialize features and guards
     initializeMenu();
@@ -61,10 +63,11 @@ function updateLayout() {
  */
 async function initializeListings() {
     try {
-        const listings = await fetchListings();
-        renderListings(listings, container);
+        const listingID = await getListingIDFromURL();
+        const listing = await fetchSingleListing(listingID);
+        renderSingleListing(listing, listingContainer, bidsContainer);
     } catch (error) {
-        console.error('Error fetching listings:', error);
+        console.error('Error fetching listing:', error);
     }
 }
 
