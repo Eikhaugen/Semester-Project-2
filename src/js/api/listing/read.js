@@ -1,4 +1,4 @@
-import { API_AUCTION_LISTINGS,API_AUCTION_SEARCH_LISTINGS, API_AUCTION_PROFILE_LISTINGS } from "../constants";
+import { API_AUCTION_LISTINGS,API_AUCTION_SEARCH_LISTINGS, API_AUCTION_PROFILE_LISTINGS, API_AUCTION_LISTINGS_BY_ID } from "../constants";
 import { getKey } from "../auth/key";
 import { headers } from "../headers";
 
@@ -146,6 +146,49 @@ export async function fetchListingsByID(id) {
         return data; 
     } catch (error) {
         console.error("Error fetching listings:", error);
+        throw error;
+    }
+}
+
+/**
+ * Fetches a single auction listing by its ID, including seller and bid details.
+ *
+ * @async
+ * @function fetchSingleListing
+ * @param {string} listingID - The unique identifier for the listing.
+ * @returns {Promise<Object>} The listing data retrieved from the API.
+ * @throws {Error} Throws an error if the fetch request fails or if the response is not OK.
+ *
+ * @example
+ * try {
+ *   const listing = await fetchSingleListing("24e91da7-a5bb-4989-809a-6be4083b5015");
+ *   console.log(listing);
+ * } catch (error) {
+ *   console.error("Error fetching listing:", error);
+ * }
+ */
+export async function fetchSingleListing(listingID) {
+    const myHeaders = headers();
+    const token = await getKey(); 
+    myHeaders.append("Authorization", `Bearer ${token}`); 
+
+    const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+    };
+
+    try {
+        const response = await fetch(`${API_AUCTION_LISTINGS_BY_ID(listingID)}?_seller=true&_bids=true`, requestOptions);
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch listing: ${response.statusText}`);
+        }
+
+        const { data } = await response.json();
+        return data; 
+    } catch (error) {
+        console.error("Error fetching listing:", error);
         throw error;
     }
 }
