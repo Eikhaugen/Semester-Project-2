@@ -2,20 +2,18 @@
 import { isLoggedIn } from "../../utils/authGuard";
 import { toggleMenu } from '../../ui/toggleMenu';
 import { logout } from '../../ui/auth/logout';
-import { renderListings } from "../../ui/listing/renderListings";
-import { fetchListings } from "../../api/listing/read";
 import { setupSearch } from "../../ui/listing/searchListing";
+import { onCreateListing } from "../../ui/listing/createListing";
 
 // DOM Elements
 const navbarToggle = document.getElementById("navbar-toggle");
 const navMenu = document.getElementById("nav-menu");
 const logOutBTN = document.getElementById("logout-btn");
-const container = document.getElementById("listings-container");
+const createListingForm = document.getElementById("create-listing-form")
 
 // Initialize features and guards
     initializeMenu();
     updateLayout();
-    initializeListings();
     setupSearch();
 
 
@@ -56,16 +54,6 @@ function updateLayout() {
     }
 }
 
-/**
- * Fetches and renders the listings.
- */
-async function initializeListings() {
-    try {
-        const listings = await fetchListings();
-        renderListings(listings, container);
-    } catch (error) {
-        console.error('Error fetching listings:', error);
-    }
-}
+createListingForm.addEventListener("submit", onCreateListing);
 
 logOutBTN.addEventListener("click", logout);
