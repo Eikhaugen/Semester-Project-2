@@ -6,6 +6,7 @@ import { renderSingleListing } from "../../ui/listing/renderSingleListing";
 import { fetchSingleListing } from "../../api/listing/read";
 import { setupSearch } from "../../ui/listing/searchListing";
 import { getListingIDFromURL } from '../../utils/getListingIDfromURL'
+import { onPlaceBid } from "../../ui/listing/bidOnListing";
 
 // DOM Elements
 const navbarToggle = document.getElementById("navbar-toggle");
@@ -13,6 +14,7 @@ const navMenu = document.getElementById("nav-menu");
 const logOutBTN = document.getElementById("logout-btn");
 const listingContainer = document.getElementById("listing-container");
 const bidsContainer = document.getElementById("listing-bids-container");
+const bidOnListingForm = document.getElementById("bid-on-listing-form");
 
 // Initialize features and guards
     initializeMenu();
@@ -70,5 +72,7 @@ async function initializeListings() {
         console.error('Error fetching listing:', error);
     }
 }
+
+bidOnListingForm.addEventListener("submit", onPlaceBid);
 
 logOutBTN.addEventListener("click", logout);
