@@ -28,7 +28,7 @@ export function setupSearch() {
             const results = await searchListings(query);
             if (results.length > 0) {
                 searchResultsContainer.classList.remove("hidden");
-                searchResultsContainer.classList.add("block");
+                searchResultsContainer.classList.add("flex");
             }
             renderSearchResults(results, searchResultsContainer);
         } catch (error) {
@@ -43,7 +43,7 @@ export function setupSearch() {
             !form.contains(event.target)
         ) {
             searchResultsContainer.classList.add("hidden");
-            searchResultsContainer.classList.remove("block");
+            searchResultsContainer.classList.remove("flex");
         }
     });
 }
@@ -85,7 +85,7 @@ export function renderSearchResults(results, container) {
             resultElement = document.createElement("div");
         }
 
-        resultElement.className = "search-result";
+        resultElement.className = "search-result flex flex-col items-center gap-2 hover:bg-gray-100 p-2 rounded-md";
 
         const img = document.createElement("img");
         if (result.media.length > 0) {
@@ -98,6 +98,7 @@ export function renderSearchResults(results, container) {
 
         const contentDiv = document.createElement("div");
         const title = document.createElement("h2");
+        title.className = "font-semibold text-gray-700"
         title.textContent = result.title || "Untitled";
 
         contentDiv.appendChild(title);
