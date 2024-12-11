@@ -64,7 +64,9 @@ export function renderSingleListing(listing, listingContainer, bidsContainer) {
     const endDate = new Date(endsAt);
     const diff = endDate - now;
   
-    if (diff <= 0) return "Auction ended";
+    if (diff <= 0) {
+      return "Auction ended";
+    }
   
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
