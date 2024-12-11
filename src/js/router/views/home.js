@@ -10,7 +10,10 @@ import { setupSearch } from "../../ui/listing/searchListing";
 const navbarToggle = document.getElementById("navbar-toggle");
 const navMenu = document.getElementById("nav-menu");
 const logOutBTN = document.getElementById("logout-btn");
-const container = document.getElementById("listings-container");
+const listingsContainer = document.getElementById("listings-container");
+const promoContainer = document.getElementById("promo");
+const searchListingForm = document.getElementById("search-listings-form")
+const searchToggle = document.getElementById("search-toggle")
 
 // Initialize features and guards
     initializeMenu();
@@ -30,6 +33,11 @@ function initializeMenu() {
     } else {
         console.error("Navbar toggle or menu not found in the DOM.");
     }
+    if (searchToggle && searchListingForm) {
+        toggleMenu(searchToggle, searchListingForm);
+    } else {
+        console.error("Search toggle button or search form not found in the DOM.");
+    }
 }
 
 /**
@@ -47,12 +55,18 @@ function updateLayout() {
 
         navMenuBtn.classList.add("block");
         navMenuBtn.classList.remove("hidden");
+
+        promoContainer.classList.add("hidden")
+        promoContainer.classList.remove("flex")
     } else {
         loginBtn.classList.add("block");
         loginBtn.classList.remove("hidden");
 
         navMenuBtn.classList.add("hidden");
         navMenuBtn.classList.remove("block");
+
+        promoContainer.classList.add("flex")
+        promoContainer.classList.remove("hidden")
     }
 }
 
@@ -62,7 +76,7 @@ function updateLayout() {
 async function initializeListings() {
     try {
         const listings = await fetchListings();
-        renderListings(listings, container);
+        renderListings(listings, listingsContainer);
     } catch (error) {
         console.error('Error fetching listings:', error);
     }
