@@ -1,5 +1,12 @@
 import { isLoggedIn } from "../../utils/authGuard";
 
+function truncateTitle(title, maxLength = 35) {
+    if (title.length > maxLength) {
+        return title.substring(0, maxLength) + "...";
+    }
+    return title;
+}
+
 export function renderListings(listings, container) {
     container.innerHTML = "";
 
@@ -8,11 +15,11 @@ export function renderListings(listings, container) {
 
         if (isLoggedIn()) {
             listingElement = document.createElement("a");
-            listingElement.className = "listing-link"; 
+            listingElement.className = "listing-link bg-blue-500 w-full rounded-lg"; 
             listingElement.href = `/listing/?id=${listing.id}`;
         } else {
             listingElement = document.createElement("div");
-            listingElement.className = "listing-div"; 
+            listingElement.className = "listing-div bg-blue-500"; 
         }
 
         const img = document.createElement("img");
@@ -25,10 +32,11 @@ export function renderListings(listings, container) {
         }
 
         const contentDiv = document.createElement("div");
-        contentDiv.className = "listing-content";
+        contentDiv.className = "listing-content bg-blue-500";
 
         const title = document.createElement("h2");
-        title.textContent = listing.title || "Untitled";
+        const fullTitle = listing.title || "Untitled";
+        title.textContent = truncateTitle(fullTitle, 20);
 
         const detailsDiv = document.createElement("div");
         detailsDiv.className = "listing-details";
