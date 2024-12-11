@@ -12,6 +12,6 @@ export function toggleMenu(toggleButton, menu) {
 
     toggleButton.addEventListener("click", () => {
         menu.classList.toggle("hidden");
-        menu.classList.toggle("block");
+        menu.classList.toggle("flex");
     });
 }
