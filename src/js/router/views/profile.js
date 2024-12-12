@@ -9,19 +9,17 @@ import { setupSearch } from "../../ui/listing/searchListing";
 import { readProfile } from "../../api/profile/read";
 import { renderProfile } from "../../ui/profile/renderProfile";
 import { onUpdateProfile } from "../../ui/profile/updateProfile";
+import { authGuard } from "../../utils/authGuard";
 
 // DOM Elements
-const navbarToggle = document.getElementById("navbar-toggle");
-const navMenu = document.getElementById("nav-menu");
 const logOutBTN = document.getElementById("logout-btn");
 const container = document.getElementById("listings-container");
 const profileSection = document.getElementById("profile-container");
 const profileUpdateForm = document.getElementById("update-profile-form")
-const editProfileBtn = document.getElementById("edit-profile-btn")
 
 // Initialize features and guards
+    authGuard();
     initializeProfile();
-    initializeMenu();
     updateLayout();
     initializeListings();
     setupSearch();
@@ -31,25 +29,13 @@ const editProfileBtn = document.getElementById("edit-profile-btn")
 // Functions
 
 /**
- * Initializes the toggle menu functionality.
- */
-function initializeMenu() {
-    if (navbarToggle && navMenu) {
-        toggleMenu(navbarToggle, navMenu);
-    } else {
-        console.error("Navbar toggle or menu not found in the DOM.");
-    }
-}
-
-/**
  * Initializes the toggle edit profile menu functionality.
  */
 function initializeProfileUpdateToggle() {
-    if (editProfileBtn && profileUpdateForm) {
-        toggleMenu(editProfileBtn, profileUpdateForm);
-    } else {
-        console.error("Edit Profile toggle or form not found in the DOM.");
-    }
+    const editProfileBtn = document.getElementById("edit-profile-btn");
+    const profileUpdateForm = document.getElementById("update-profile-form");
+
+    toggleMenu(editProfileBtn, profileUpdateForm);
 }
 
 /**
@@ -58,21 +44,21 @@ function initializeProfileUpdateToggle() {
 function updateLayout() {
     const loggedIn = isLoggedIn();
 
+    const registerBtn = document.getElementById("register-btn");
     const loginBtn = document.getElementById("login-btn");
-    const navMenuBtn = document.getElementById("navbar-toggle");
+    const logOutBtn = document.getElementById("logout-btn");
+    const navMenu = document.getElementById("nav-menu")
 
     if (loggedIn) {
         loginBtn.classList.add("hidden");
-        loginBtn.classList.remove("block");
-
-        navMenuBtn.classList.add("block");
-        navMenuBtn.classList.remove("hidden");
+        registerBtn.classList.add("hidden");
+        logOutBtn.classList.remove("hidden");
+        navMenu.classList.add("block")
+        navMenu.classList.remove("hidden")
     } else {
-        loginBtn.classList.add("block");
         loginBtn.classList.remove("hidden");
-
-        navMenuBtn.classList.add("hidden");
-        navMenuBtn.classList.remove("block");
+        registerBtn.classList.remove("hidden");
+        logOutBtn.classList.add("hidden");
     }
 }
 
@@ -100,10 +86,12 @@ async function initializeProfile() {
 
         renderProfile(profileData, profileSection);
         populateEditProfileForm(profileData);
+        initializeProfileUpdateToggle();
     } catch (error) {
         console.error('Error fetching profile:', error);
     }
 }
+
 
 /**
  * Populates the edit profile form with existing profile data.
