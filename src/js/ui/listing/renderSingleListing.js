@@ -6,9 +6,7 @@ export function renderSingleListing(listing, listingContainer, bidsContainer) {
     
     const listingHTML = `
       <div>
-        <a href="#">
           <img src="${media[0]?.url || ''}" alt="${media[0]?.alt || 'Listing image'}">
-        </a>
         <div>
           <h2>${title}</h2>
           <div>
