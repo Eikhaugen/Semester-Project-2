@@ -1,87 +1,88 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/84d9821b5f.js" crossorigin="anonymous"></script>
-    <script type="module" src="/main.js" defer></script>
-    <title>Auction House</title>
-  </head>
-  <body>
-    <div id="navbar" class="">
-      <img src="" alt="">
 
-      <form id="search-listings-form">
-        <input id="search-listings-input" type="text" placeholder="Search...">
-        <button type="submit">Search</button>
-      </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/84d9821b5f.js" crossorigin="anonymous"></script>
+  <script type="module" src="/main.js" defer></script>
+  <title>Listing | Auction House</title>
+</head>
 
-      <div id="search-results" class="hidden">
-        <a href="">
-          <img src="" alt="">
-          <div>
-            <h2>Title</h2>
-          </div>
+<body class="w-dvw min-h-dvh bg-white text-gray-800 flex flex-col items-center">
+  <header id="navbar" class=" bg-white shadow-md flex justify-center w-full max-w-screen-2xl">
+    <div class="max-w-screen-2xl w-full h-16 flex gap-4 items-center justify-between px-4">
+
+      <div class="flex gap-4 justify-center items-center">
+        <a href="/" class="flex justify-center items-center gap-4">
+          <img src="/AuctionHouse-Logo.svg" alt="Auction House Logo" class="w-8 h-auto">
+          <span class="text-2xl font-bold text-blue-500 hidden lg:block">AuctionHouse</span>
         </a>
-
       </div>
 
-      <nav id="nav-menu" class="hidden">
-        <ul>
-          <li>
-            <a href="../">Home</a>
-          </li>
-          <li>
-            <a href="../create/">Create Listing</a>
-          </li>
-          <li>
-            <a href="../profile/">Profile</a>
-          </li>
-          <li>
-            <button id="logout-btn">
-              Logout
-            </button>
-          </li>
+      <!-- Search Form -->
+      <form id="search-listings-form" class="flex items-center flex-1 gap-0 max-w-2xl relative">
+        <div class="relative w-full">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <input id="search-listings-input" type="text" placeholder="Search..."
+            class="border rounded-l-md p-2 pl-10 h-10 w-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 h-10 rounded-r-md hover:bg-blue-600">
+          Search
+        </button>
+        <div id="search-results" class="hidden absolute top-full left-0 bg-white shadow-md p-2 rounded-md w-full max-w-96 z-10 flex-col gap-4">
+        </div>
+      </form>
 
+      <!-- Buttons Section -->
+      <div class="flex gap-2">
+        <a id="login-btn" href="auth/login/"
+          class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm flex justify-center items-center">
+          Log in
+        </a>
+        <a id="register-btn" href="auth/register/"
+          class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm flex justify-center items-center">
+          Sign up
+        </a>
+        <button id="logout-btn"
+          class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm flex justify-center items-center">
+          Log out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex max-w-screen-2xl w-full">
+    <aside id="nav-menu" class="hidden w-8 md:w-fit sticky top-0 h-screen overflow-y-auto p-2 md:p-4 bg-white shadow-md">
+      <nav>
+        <ul class="flex flex-col gap-4 md:pr-2">
+          <li>
+            <a href="/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600" aria-label="Home" title="Home">
+              <i class="fa-regular fa-house" aria-hidden="true"></i>
+              <span class="hidden md:inline"> Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/create/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600" aria-label="Create Listing" title="Create Listing">
+              <i class="fa-regular fa-plus-square" aria-hidden="true"></i>
+              <span class="hidden md:inline"> Create&nbsp;Listing</span>
+            </a>
+          </li>
+          <li>
+            <a href="/profile/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600" aria-label="Profile" title="Profile">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              <span class="hidden md:inline"> Profile</span>
+            </a>
+          </li>
         </ul>
       </nav>
-
-      <a id="login-btn" href="auth/login/"><i class="fa-regular fa-right-to-bracket"></i></a>
-
-      <button id="navbar-toggle">
-        <i class="fa-regular fa-bars"></i>
-      </button>
-
-    </div>
-    <main class="">
+    </aside>
+    <main class="w-full p-2 md:p-4 flex flex-col gap-2 md:gap-4 bg-gray-100">
       <section id="listing-section">
-        <div id="listing-container">
-          <div class="" href="">
-            <img src="" alt="">
-            <div>
-              <h2>
-                Lorem ipsum dolor sit amet
-              </h2>
-              <div>
-                <div>
-                  <span>
-                    50kr
-                  </span>
-                </div>
-                <div>
-                  <span>
-                    0 bids
-                  </span>
-                  <span>
-                    1d 23hrs
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="listing-container" class="w-full">
 
+        </div>
+      
         <div>
           <form id="bid-on-listing-form">
             <label for="bid-amount">Bid Amount:</label>
@@ -119,9 +120,11 @@
         </div>
       </section>
     </main>
-    <footer>
+  </div>
+  <footer class="w-full max-w-screen-2xl p-4 bg-gray-800 text-white text-center">
+    &copy; 2024 Auction House. All Rights Reserved.
+  </footer>
+</body>
 
-    </footer>
-
-  </body>
 </html>
+
