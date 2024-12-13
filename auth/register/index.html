@@ -6,64 +6,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/84d9821b5f.js" crossorigin="anonymous"></script>
     <script type="module" src="/main.js" defer></script>
-    <title>Sign Up | Auction House</title>
+    <title>Sign up | Auction House</title>
   </head>
-  <body>
-    <div id="navbar" class="">
-      <img src="" alt="">
-
-      <form>
-        <input type="text" placeholder="Search...">
-        <button>
-          <i class="fa-duotone fa-regular fa-magnifying-glass"></i>
-        </button>
-      </form>
-
-      <button>
-        <i class="fa-regular fa-bars"></i>
-      </button>
-
-    </div>
-    <main class="">
-
-      <div id="signup-form">
-        <form>
-            <h2>Sign Up</h2>
-            <div>
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required placeholder="Enter your username" maxlength="20" pattern="^[\w]+$" title="Please enter a username using only letters and numbers"/>
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email" pattern="^[\w\-.]+@(stud\.)?noroff\.no$" title="Please enter a valid noroff.no or stud.noroff.no address"/>
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="Create a password" minlength="8"/>
-            </div>
-            <div>
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password" minlength="8"/>
-            </div>
-            <div>
-                <label for="avatar-url">Avatar URL</label>
-                <input type="url" id="avatar-url" name="avatar-url" placeholder="Link to your avatar image (optional)"/>
-            </div>
-            <div>
-                <label for="banner-url">Banner URL</label>
-                <input type="url" id="banner-url" name="banner-url" placeholder="Link to your banner image (optional)"/>
-            </div>
-            <button type="submit">Sign Up</button>
-            <p>Already registered? <a href="../login/">Log in here</a>.</p>
-        </form>
-    </div>
+    <body class="w-dvw min-h-dvh bg-white text-gray-800 flex flex-col items-center">
+      <header id="navbar" class=" bg-white shadow-md flex justify-center w-full max-w-screen-2xl">
+        <div class="max-w-screen-2xl w-full h-16 flex gap-4 items-center justify-between px-4">
     
+          <div class="flex gap-4 justify-center items-center">
+            <a href="/" class="flex justify-center items-center gap-4">
+              <img src="/AuctionHouse-Logo.svg" alt="Auction House Logo" class="w-8 h-auto">
+              <span class="text-2xl font-bold text-blue-500 hidden lg:block">AuctionHouse</span>
+            </a>
+          </div>
+          <form id="search-listings-form" class="flex items-center flex-1 gap-0 max-w-2xl relative">
+            <div class="relative w-full">
+              <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+              <input id="search-listings-input" type="text" placeholder="Search..."
+                class="border rounded-l-md p-2 pl-10 h-10 w-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 h-10 rounded-r-md hover:bg-blue-600">
+              Search
+            </button>
+            <div id="search-results" class="hidden absolute top-full left-0 bg-white shadow-md p-2 rounded-md w-full max-w-96 z-10 flex-col gap-4">
+            </div>
+          </form>
+          <div class="flex gap-2">
+            <a id="login-btn" href="/auth/login/"
+              class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm flex justify-center items-center">
+              Log in
+            </a>
+            <a id="register-btn" href="/auth/register/"
+              class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm flex justify-center items-center">
+              Sign up
+            </a>
+            <button id="logout-btn"
+              class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm flex justify-center items-center">
+              Log out
+            </button>
+          </div>
+        </div>
+      </header>
     
-        
-    </main>
-    <footer>
-
-    </footer>
-
+      <div class="flex max-w-screen-2xl w-full">
+        <aside id="nav-menu" class="hidden w-8 md:w-fit sticky top-0 h-screen overflow-y-auto p-2 md:p-4 bg-white shadow-md">
+          <nav>
+            <ul class="flex flex-col gap-4 md:pr-2">
+              <li>
+                <a href="#" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600" aria-label="Home" title="Home">
+                  <i class="fa-regular fa-house" aria-hidden="true"></i>
+                  <span class="hidden md:inline"> Home</span>
+                </a>
+              </li>
+              <li>
+                <a href="/create/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600" aria-label="Create Listing" title="Create Listing">
+                  <i class="fa-regular fa-plus-square" aria-hidden="true"></i>
+                  <span class="hidden md:inline"> Create&nbsp;Listing</span>
+                </a>
+              </li>
+              <li>
+                <a href="/profile/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600" aria-label="Profile" title="Profile">
+                  <i class="fa-regular fa-user" aria-hidden="true"></i>
+                  <span class="hidden md:inline"> Profile</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+        <main class="w-full p-2 md:p-4 flex flex-col gap-2 md:gap-4 bg-gray-100">
+          <div id="signup-section" class="w-full max-w-lg mx-auto mt-10 bg-white p-8 rounded-lg shadow-md">
+            <form id="signup-form" class="flex flex-col gap-6">
+              <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Sign Up</h2>
+          
+              <div class="flex flex-col gap-2">
+                <label for="username" class="text-gray-700 font-medium">Username</label>
+                <input 
+                  type="text" 
+                  id="username" 
+                  name="username" 
+                  required 
+                  placeholder="Enter your username" 
+                  maxlength="20" 
+                  pattern="^[\w]+$" 
+                  title="Please enter a username using only letters and numbers" 
+                  class="border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+              </div>
+          
+              <div class="flex flex-col gap-2">
+                <label for="email" class="text-gray-700 font-medium">Email</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required 
+                  placeholder="Enter your email" 
+                  pattern="^[\w\-.]+@(stud\.)?noroff\.no$" 
+                  title="Please enter a valid noroff.no or stud.noroff.no address" 
+                  class="border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+              </div>
+          
+              <div class="flex flex-col gap-2">
+                <label for="password" class="text-gray-700 font-medium">Password</label>
+                <input 
+                  type="password" 
+                  id="password" 
+                  name="password" 
+                  required 
+                  placeholder="Create a password" 
+                  minlength="8" 
+                  class="border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+              </div>
+          
+              <div class="flex flex-col gap-2">
+                <label for="confirm-password" class="text-gray-700 font-medium">Confirm Password</label>
+                <input 
+                  type="password" 
+                  id="confirm-password" 
+                  name="confirm-password" 
+                  required 
+                  placeholder="Confirm your password" 
+                  minlength="8" 
+                  class="border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+              </div>
+          
+              <div class="flex flex-col gap-2">
+                <label for="avatar-url" class="text-gray-700 font-medium">Avatar URL</label>
+                <input 
+                  type="url" 
+                  id="avatar-url" 
+                  name="avatar-url" 
+                  placeholder="Link to your avatar image (optional)" 
+                  class="border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+              </div>
+          
+              <div class="flex flex-col gap-2">
+                <label for="banner-url" class="text-gray-700 font-medium">Banner URL</label>
+                <input 
+                  type="url" 
+                  id="banner-url" 
+                  name="banner-url" 
+                  placeholder="Link to your banner image (optional)" 
+                  class="border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+              </div>
+          
+              <button 
+                type="submit" 
+                class="bg-green-500 text-white font-medium px-4 py-3 rounded-lg hover:bg-green-600 transition duration-200">
+                Sign Up
+              </button>
+          
+              <p class="text-center text-gray-600">
+                Already registered? 
+                <a href="/auth/login/" class="text-blue-500 font-medium hover:underline">Log in here</a>.
+              </p>
+            </form>
+          </div>          
+        </main>
+      </div>
+      <footer class="w-full max-w-screen-2xl p-4 bg-gray-800 text-white text-center">
+        &copy; 2024 Auction House. All Rights Reserved.
+      </footer>
   </body>
 </html>
+
