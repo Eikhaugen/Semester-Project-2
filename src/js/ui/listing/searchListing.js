@@ -68,8 +68,8 @@ export function renderSearchResults(results, container) {
 
     if (results.length === 0) {
         container.innerHTML = "<p>No results found.</p>";
-        container.classList.add("hidden");
-        container.classList.remove("block");
+        container.classList.add("block");
+        container.classList.remove("hidden");
         return;
     }
 
