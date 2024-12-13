@@ -28,7 +28,6 @@ function updateLayout() {
     const loginBtn = document.getElementById("login-btn");
     const logOutBtn = document.getElementById("logout-btn");
     const navMenu = document.getElementById("nav-menu")
-    const mainContainer = document.querySelector("main")
 
     if (loggedIn) {
         loginBtn.classList.add("hidden");
