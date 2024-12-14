@@ -31,6 +31,9 @@ export default {
         },
         
       },
+      backgroundImage: {
+        'promo-bg': "url('sign-up-promo.jpg')"
+      },
     },
   },
   plugins: [],
