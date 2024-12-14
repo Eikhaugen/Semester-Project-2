@@ -28,9 +28,9 @@ export function renderSingleListing(listing, listingContainer, bidsContainer) {
   const listingHTML = `
     <div class="w-full mx-auto bg-white rounded-lg shadow-md overflow-hidden mb-6 flex">
       <img 
-        src="${media[0]?.url || ''}" 
+        src="${media[0]?.url || '/default-placeholder.jpg'}" 
         alt="${media[0]?.alt || 'Listing image'}" 
-        class="w-full max-w-96 h-64 object-cover"
+        class="w-full max-w-96 h-full object-cover"
       />
       <div class="p-6">
         <h2 class="text-2xl font-bold mb-4">${title}</h2>
