@@ -18,19 +18,16 @@ function updateLayout() {
 
     const registerBtn = document.getElementById("register-btn");
     const loginBtn = document.getElementById("login-btn");
-    const logOutBtn = document.getElementById("logout-btn");
     const navMenu = document.getElementById("nav-menu")
 
     if (loggedIn) {
         loginBtn.classList.add("hidden");
         registerBtn.classList.add("hidden");
-        logOutBtn.classList.remove("hidden");
         navMenu.classList.add("block")
         navMenu.classList.remove("hidden")
     } else {
         loginBtn.classList.remove("hidden");
         registerBtn.classList.remove("hidden");
-        logOutBtn.classList.add("hidden");
     }
 }
 
