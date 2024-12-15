@@ -4,6 +4,7 @@ import { logout } from '../../ui/auth/logout';
 import { renderListings } from "../../ui/listing/renderListings";
 import { fetchListings } from "../../api/listing/read";
 import { setupSearch } from "../../ui/listing/searchListing";
+import { initListingControls } from "../../ui/listing/listingControls";
 
 // DOM Elements
 const logOutBtn = document.getElementById("logout-btn");
@@ -11,10 +12,10 @@ const listingsContainer = document.getElementById("listings-container");
 const promoContainer = document.getElementById("promo");
 
 // Initialize features and guards
-    updateLayout();
-    initializeListings();
-    setupSearch();
-
+updateLayout();
+initializeListings();
+setupSearch();
+initListingControls(listingsContainer);
 
 // Functions
 
@@ -27,7 +28,7 @@ function updateLayout() {
     const registerBtn = document.getElementById("register-btn");
     const loginBtn = document.getElementById("login-btn");
     const logOutBtn = document.getElementById("logout-btn");
-    const navMenu = document.getElementById("nav-menu")
+    const navMenu = document.getElementById("nav-menu");
 
     if (loggedIn) {
         loginBtn.classList.add("hidden");
@@ -35,8 +36,8 @@ function updateLayout() {
         logOutBtn.classList.remove("hidden");
         promoContainer.classList.add("hidden");
         promoContainer.classList.remove("flex");
-        navMenu.classList.add("block")
-        navMenu.classList.remove("hidden")
+        navMenu.classList.add("block");
+        navMenu.classList.remove("hidden");
     } else {
         loginBtn.classList.remove("hidden");
         registerBtn.classList.remove("hidden");
@@ -46,17 +47,20 @@ function updateLayout() {
     }
 }
 
-
 /**
- * Fetches and renders the listings.
+ * Fetches and renders the listings on initial load.
  */
 async function initializeListings() {
     try {
-        const listings = await fetchListings();
+        const page = 1;
+        const sortBy = "created";
+        const sortOrder = "desc";
+        const listings = await fetchListings(page, sortBy, sortOrder);
         renderListings(listings, listingsContainer);
     } catch (error) {
         console.error('Error fetching listings:', error);
     }
 }
 
+// Event listener for logout button
 logOutBtn.addEventListener("click", logout);

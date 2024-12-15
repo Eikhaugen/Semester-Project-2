@@ -26,7 +26,7 @@ import { headers } from "../headers";
  *     console.error("Error fetching listings:", error);
  * }
  */
-export async function fetchListings() {
+export async function fetchListings(page, sortBy, sortOrder) {
     const myHeaders = headers();
 
     const requestOptions = {
@@ -36,7 +36,7 @@ export async function fetchListings() {
     };
 
     try {
-        const response = await fetch(`${API_AUCTION_LISTINGS}?_bids=true&_active=true&limit=24`, requestOptions);
+        const response = await fetch(`${API_AUCTION_LISTINGS}?_bids=true&_active=true&limit=24&page=${page}&sortOrder=${sortOrder}&sort=${sortBy}`, requestOptions);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch listings: ${response.statusText}`);
