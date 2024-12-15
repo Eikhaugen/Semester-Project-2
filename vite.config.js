@@ -12,7 +12,7 @@ export default defineConfig({
         login: resolve(__dirname, "./auth/login/index.html"),
         register: resolve(__dirname, "./auth/register/index.html"),
         profile: resolve(__dirname, "./profile/index.html"),
-        register: resolve(__dirname, "./listing/index.html"),
+        listing: resolve(__dirname, "./listing/index.html"),
         create: resolve(__dirname, "./create/index.html"),
       },
     },

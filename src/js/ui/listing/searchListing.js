@@ -28,7 +28,7 @@ export function setupSearch() {
             const results = await searchListings(query);
             if (results.length > 0) {
                 searchResultsContainer.classList.remove("hidden");
-                searchResultsContainer.classList.add("block");
+                searchResultsContainer.classList.add("flex");
             }
             renderSearchResults(results, searchResultsContainer);
         } catch (error) {
@@ -43,7 +43,7 @@ export function setupSearch() {
             !form.contains(event.target)
         ) {
             searchResultsContainer.classList.add("hidden");
-            searchResultsContainer.classList.remove("block");
+            searchResultsContainer.classList.remove("flex");
         }
     });
 }
@@ -67,9 +67,12 @@ export function renderSearchResults(results, container) {
     container.innerHTML = "";
 
     if (results.length === 0) {
-        container.innerHTML = "<p>No results found.</p>";
-        container.classList.add("hidden");
-        container.classList.remove("block");
+        const noResults = document.createElement("p");
+        noResults.textContent = "No results found.";
+        noResults.className = "text-sm md:text-base text-gray-500";
+        container.appendChild(noResults);
+        container.classList.add("block");
+        container.classList.remove("hidden");
         return;
     }
 
@@ -80,12 +83,16 @@ export function renderSearchResults(results, container) {
 
         if (loggedIn) {
             resultElement = document.createElement("a");
-            resultElement.href = `listing/?id=${result.id}`;
+            resultElement.className = "block bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300";
+            resultElement.href = `/listing/?id=${result.id}`;
         } else {
             resultElement = document.createElement("div");
+            resultElement.className = "block bg-white shadow-md rounded-lg overflow-hidden";
         }
 
-        resultElement.className = "search-result";
+        // Image container
+        const imgContainer = document.createElement("div");
+        imgContainer.className = "h-40 overflow-hidden";
 
         const img = document.createElement("img");
         if (result.media.length > 0) {
@@ -96,12 +103,61 @@ export function renderSearchResults(results, container) {
             img.alt = "No image available";
         }
 
+        img.className = "object-cover object-center w-full h-full";
+        imgContainer.appendChild(img);
+
+        // Content container
         const contentDiv = document.createElement("div");
+        contentDiv.className = "p-4 flex flex-col gap-2";
+
+        // Title
         const title = document.createElement("h2");
+        title.className = "text-lg md:text-2xl font-semibold text-gray-800";
         title.textContent = result.title || "Untitled";
 
+        // Details container
+        const detailsDiv = document.createElement("div");
+        detailsDiv.className = "flex justify-between items-center text-sm md:text-base text-gray-600";
+
+        // Price and bids
+        const priceDiv = document.createElement("div");
+        priceDiv.className = "flex flex-col";
+
+        const priceSpan = document.createElement("span");
+        priceSpan.textContent = `${result._count?.bids || 0} bids`;
+        priceSpan.className = "text-gray-500 text-xs md:text-sm";
+
+        const highestBid = result.bids?.reduce((max, bid) => Math.max(max, bid.amount), 0) || 0;
+        const highestBidSpan = document.createElement("span");
+        highestBidSpan.textContent = `Highest Bid: ${highestBid} Credits`;
+        highestBidSpan.className = "font-medium text-green-600 text-sm md:text-base";
+
+        priceDiv.appendChild(priceSpan);
+        priceDiv.appendChild(highestBidSpan);
+
+        // Time left
+        const timeDiv = document.createElement("div");
+        timeDiv.className = "text-gray-500 text-xs md:text-sm";
+
+        const timeSpan = document.createElement("span");
+        const endsAt = new Date(result.endsAt);
+        const now = new Date();
+        const timeLeft = Math.max(0, endsAt - now);
+        const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hoursLeft = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+        timeSpan.textContent = `${daysLeft}d ${hoursLeft}hrs`;
+
+        timeDiv.appendChild(timeSpan);
+
+        detailsDiv.appendChild(priceDiv);
+        detailsDiv.appendChild(timeDiv);
+
+        // Append elements to content container
         contentDiv.appendChild(title);
-        resultElement.appendChild(img);
+        contentDiv.appendChild(detailsDiv);
+
+        // Append image and content to the result element
+        resultElement.appendChild(imgContainer);
         resultElement.appendChild(contentDiv);
 
         container.appendChild(resultElement);
@@ -110,3 +166,5 @@ export function renderSearchResults(results, container) {
     container.classList.remove("hidden");
     container.classList.add("block");
 }
+
+

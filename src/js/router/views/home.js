@@ -1,19 +1,16 @@
 // Import statements
 import { isLoggedIn } from "../../utils/authGuard";
-import { toggleMenu } from '../../ui/toggleMenu';
 import { logout } from '../../ui/auth/logout';
 import { renderListings } from "../../ui/listing/renderListings";
 import { fetchListings } from "../../api/listing/read";
 import { setupSearch } from "../../ui/listing/searchListing";
 
 // DOM Elements
-const navbarToggle = document.getElementById("navbar-toggle");
-const navMenu = document.getElementById("nav-menu");
-const logOutBTN = document.getElementById("logout-btn");
-const container = document.getElementById("listings-container");
+const logOutBtn = document.getElementById("logout-btn");
+const listingsContainer = document.getElementById("listings-container");
+const promoContainer = document.getElementById("promo");
 
 // Initialize features and guards
-    initializeMenu();
     updateLayout();
     initializeListings();
     setupSearch();
@@ -22,39 +19,33 @@ const container = document.getElementById("listings-container");
 // Functions
 
 /**
- * Initializes the toggle menu functionality.
- */
-function initializeMenu() {
-    if (navbarToggle && navMenu) {
-        toggleMenu(navbarToggle, navMenu);
-    } else {
-        console.error("Navbar toggle or menu not found in the DOM.");
-    }
-}
-
-/**
  * Updates the layout based on login status.
  */
 function updateLayout() {
     const loggedIn = isLoggedIn();
 
+    const registerBtn = document.getElementById("register-btn");
     const loginBtn = document.getElementById("login-btn");
-    const navMenuBtn = document.getElementById("navbar-toggle");
+    const logOutBtn = document.getElementById("logout-btn");
+    const navMenu = document.getElementById("nav-menu")
 
     if (loggedIn) {
         loginBtn.classList.add("hidden");
-        loginBtn.classList.remove("block");
-
-        navMenuBtn.classList.add("block");
-        navMenuBtn.classList.remove("hidden");
+        registerBtn.classList.add("hidden");
+        logOutBtn.classList.remove("hidden");
+        promoContainer.classList.add("hidden");
+        promoContainer.classList.remove("flex");
+        navMenu.classList.add("block")
+        navMenu.classList.remove("hidden")
     } else {
-        loginBtn.classList.add("block");
         loginBtn.classList.remove("hidden");
-
-        navMenuBtn.classList.add("hidden");
-        navMenuBtn.classList.remove("block");
+        registerBtn.classList.remove("hidden");
+        logOutBtn.classList.add("hidden");
+        promoContainer.classList.add("flex");
+        promoContainer.classList.remove("hidden");
     }
 }
+
 
 /**
  * Fetches and renders the listings.
@@ -62,10 +53,10 @@ function updateLayout() {
 async function initializeListings() {
     try {
         const listings = await fetchListings();
-        renderListings(listings, container);
+        renderListings(listings, listingsContainer);
     } catch (error) {
         console.error('Error fetching listings:', error);
     }
 }
 
-logOutBTN.addEventListener("click", logout);
+logOutBtn.addEventListener("click", logout);
