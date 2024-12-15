@@ -38,7 +38,6 @@
           <span class="text-2xl md:text-4xl font-bold text-blue-500 hidden lg:block">AuctionHouse</span>
         </a>
       </div>
-
       <!-- Search Form -->
       <form id="search-listings-form" class="flex items-center flex-1 gap-0 max-w-2xl relative">
         <div class="relative w-full">
@@ -51,10 +50,7 @@
         </button>
         <div id="search-results" class="hidden absolute top-full left-0 bg-white shadow-md p-2 rounded-md w-full min-w-[250px] max-w-[350px] z-10 min-h-[200px] max-h-[500px] overflow-y-auto">
         </div>
-        
-               
       </form>
-
       <!-- Buttons Section -->
       <div class="flex gap-2">
         <a id="login-btn" href="auth/login/"
@@ -71,66 +67,59 @@
         </button>
       </div>
     </div>
-
-
-
-
     <div id="nav-menu" class="hidden left-0 w-8 md:w-fit absolute top-14 h-screen overflow-y-auto p-2 md:p-4 bg-white shadow-md">
       <nav>
         <ul class="flex flex-col gap-4 md:pr-2">
           <li class="block md:hidden">
-            <button class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-sm md:text-base" aria-label="Toggle Menu" title="Toggle Menu">
+            <button id="toggleMenuBtn" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-base" aria-label="Toggle Menu" title="Toggle Menu">
               <i class="fa-solid fa-bars" aria-hidden="true"></i>
+              <span id="home-link-text" class="hidden md:inline"> Close Menu</span>
             </button>
           </li>
           <li>
-            <a href="#" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-sm md:text-base" aria-label="Home" title="Home">
+            <a href="#" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-base" aria-label="Home" title="Home">
               <i class="fa-solid fa-house" aria-hidden="true"></i>
-              <span class="hidden md:inline"> Home</span>
+              <span id="home-link-text" class="hidden md:inline"> Home</span>
             </a>
           </li>
           <li>
-            <a href="/create/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-sm md:text-base" aria-label="Create Listing" title="Create Listing">
+            <a href="/create/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-base" aria-label="Create Listing" title="Create Listing">
               <i class="fa-regular fa-plus-square" aria-hidden="true"></i>
-              <span class="hidden md:inline"> Create&nbsp;Listing</span>
+              <span id="create-listing-link-text" class="hidden md:inline"> Create&nbsp;Listing</span>
             </a>
           </li>
           <li>
-            <a href="/profile/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-sm md:text-base" aria-label="Profile" title="Profile">
+            <a href="/profile/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-base" aria-label="Profile" title="Profile">
               <i class="fa-regular fa-user" aria-hidden="true"></i>
-              <span class="hidden md:inline"> Profile</span>
+              <span id="profile-link-text" class="hidden md:inline"> Profile</span>
             </a>
           </li>
+          
         </ul>
       </nav>
-      <div class="flex flex-col mt-10">
-        <label for="sortCriteria">Sort by:</label>
-        <select id="sortCriteria" name="sortCriteria">
-          <option value="title">Alphabetically</option>
-          <option value="created" selected>Newest</option>
-          <option value="endsAt">Ending Soon</option>
-        </select>
+      <div id="sortingContainer" class="flex-col mt-10 gap-4 hidden md:flex">
+        <div class="flex flex-col gap-2">
+          <label for="sortCriteria" class="text-gray-700 font-medium">Sort by:</label>
+          <select id="sortCriteria" name="sortCriteria" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 hover:border-blue-400 text-gray-700">
+            <option value="title">Alphabetically</option>
+            <option value="created" selected>Newest</option>
+            <option value="endsAt">Ending Soon</option>
+          </select>
+        </div>
       
-        <label for="sortOrder">Order:</label>
-        <select id="sortOrder" name="sortOrder">
-          <option value="asc">Ascending</option>
-          <option value="desc" selected>Descending</option>
-        </select>
+        <div class="flex flex-col gap-2">
+          <label for="sortOrder" class="text-gray-700 font-medium">Order:</label>
+          <select id="sortOrder" name="sortOrder" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 hover:border-blue-400 text-gray-700">
+            <option value="asc">Ascending</option>
+            <option value="desc" selected>Descending</option>
+          </select>
+        </div>
       </div>
-      
-    </aside>
-
-
-
-
-
-
+    </div>
   </header>
-
   <div class="flex max-w-screen-2xl w-full">
-
-    <main class="w-full p-2 ml-8 md:ml-40 md:p-4 flex flex-col gap-2 md:gap-4 bg-gray-100">
-      <div id="promo" class="h-40 md:h-80 bg-promo-bg bg-cover bg-center rounded-md">
+    <main class="w-full p-2 ml-8 md:ml-40 md:p-4 md:pl-6 flex flex-col gap-2 md:gap-4 bg-gray-100">
+      <div id="promo" class="h-40 md:h-80 rounded-md" style="background-image: url(/sign-up-promo.jpg); background-position: center; background-size: cover;">
         <a class="flex flex-col justify-evenly h-full w-full items-center text-center rounded-md shadow-md bg-black bg-opacity-50 hover:bg-opacity-40 transition"
            href="auth/register/">
           <h1 class="text-2xl md:text-4xl font-bold mb-2 text-white">
@@ -141,7 +130,6 @@
           </span>
         </a>
       </div>
-
       <div id="listings-container" class="w-full grid grid-cols-1 gap-2 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       </div>
       <div class="w-full flex justify-center items-center gap-4">
@@ -157,11 +145,8 @@
           <i class="fa-solid fa-arrow-right"></i>
         </button>
       </div>
-      
-      
     </main>
   </div>
-
   <footer class="w-full max-w-screen-2xl p-4 bg-gray-800 text-white text-center text-xs md:text-sm">
     &copy; 2024 Auction House. All Rights Reserved.
   </footer>

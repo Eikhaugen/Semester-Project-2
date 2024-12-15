@@ -5,6 +5,7 @@ import { renderListings } from "../../ui/listing/renderListings";
 import { fetchListings } from "../../api/listing/read";
 import { setupSearch } from "../../ui/listing/searchListing";
 import { initListingControls } from "../../ui/listing/listingControls";
+import { initToggleMenu } from "../../utils/toggleMenu";
 
 // DOM Elements
 const logOutBtn = document.getElementById("logout-btn");
@@ -16,6 +17,7 @@ updateLayout();
 initializeListings();
 setupSearch();
 initListingControls(listingsContainer);
+initToggleMenu();
 
 // Functions
 
@@ -29,6 +31,7 @@ function updateLayout() {
     const loginBtn = document.getElementById("login-btn");
     const logOutBtn = document.getElementById("logout-btn");
     const navMenu = document.getElementById("nav-menu");
+    const main = document.querySelector("main")
 
     if (loggedIn) {
         loginBtn.classList.add("hidden");
@@ -38,12 +41,16 @@ function updateLayout() {
         promoContainer.classList.remove("flex");
         navMenu.classList.add("block");
         navMenu.classList.remove("hidden");
+        main.classList.add("ml-8", "md:ml-40", "md:p-4", "md:pl-6")
+
     } else {
         loginBtn.classList.remove("hidden");
         registerBtn.classList.remove("hidden");
         logOutBtn.classList.add("hidden");
         promoContainer.classList.add("flex");
         promoContainer.classList.remove("hidden");
+        main.classList.remove("ml-8", "md:ml-40", "md:p-4", "md:pl-6")
+        main.classList.add("md:p-4")
     }
 }
 
