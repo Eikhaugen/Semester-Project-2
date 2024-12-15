@@ -28,7 +28,7 @@ export function setupSearch() {
             const results = await searchListings(query);
             if (results.length > 0) {
                 searchResultsContainer.classList.remove("hidden");
-                searchResultsContainer.classList.add("flex");
+                searchResultsContainer.classList.add("block");
             }
             renderSearchResults(results, searchResultsContainer);
         } catch (error) {
@@ -83,11 +83,11 @@ export function renderSearchResults(results, container) {
 
         if (loggedIn) {
             resultElement = document.createElement("a");
-            resultElement.className = "block bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300";
+            resultElement.className = "block bg-white shadow-md mt-2 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300";
             resultElement.href = `/listing/?id=${result.id}`;
         } else {
             resultElement = document.createElement("div");
-            resultElement.className = "block bg-white shadow-md rounded-lg overflow-hidden";
+            resultElement.className = "block mt-2 bg-white shadow-md rounded-lg overflow-hidden";
         }
 
         // Image container

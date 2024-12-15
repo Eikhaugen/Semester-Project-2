@@ -10,6 +10,7 @@ import { readProfile } from "../../api/profile/read";
 import { renderProfile } from "../../ui/profile/renderProfile";
 import { onUpdateProfile } from "../../ui/profile/updateProfile";
 import { authGuard } from "../../utils/authGuard";
+import { initToggleMenu } from "../../utils/toggleMenu";
 
 // DOM Elements
 const logOutBTN = document.getElementById("logout-btn");
@@ -24,6 +25,7 @@ const profileUpdateForm = document.getElementById("update-profile-form")
     initializeListings();
     setupSearch();
     initializeProfileUpdateToggle();
+    initToggleMenu();
 
 
 // Functions

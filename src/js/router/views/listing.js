@@ -6,6 +6,7 @@ import { fetchSingleListing } from "../../api/listing/read";
 import { setupSearch } from "../../ui/listing/searchListing";
 import { getListingIDFromURL } from '../../utils/getListingIDfromURL'
 import { onPlaceBid } from "../../ui/listing/bidOnListing";
+import { initToggleMenu } from "../../utils/toggleMenu";
 
 // DOM Elements
 const logOutBTN = document.getElementById("logout-btn");
@@ -18,6 +19,7 @@ const bidOnListingForm = document.getElementById("bid-on-listing-form");
     updateLayout();
     initializeListings();
     setupSearch();
+    initToggleMenu();
 
 
 // Functions
