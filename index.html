@@ -4,19 +4,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Discover, bid, and win unique items at Auction House. Sign up today and receive 1,000 free credits to start bidding!" />
+  <meta name="keywords" content="auction, online auction, bidding, unique items, Auction House, buy, sell, bid online, marketplace" />
+  <meta name="author" content="Auction House" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Auction House | Bid on Unique Items" />
+  <meta property="og:description" content="Join Auction House to discover unique items and start bidding. Sign up and get 1,000 free credits!" />
+  <meta property="og:image" content="/AuctionHouse-Logo.svg" />
+  <meta property="og:url" content="https://www.auctionhouse.com/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/AuctionHouse-Logo.svg" />
+
+  <!-- External Scripts -->
   <script src="https://kit.fontawesome.com/84d9821b5f.js" crossorigin="anonymous"></script>
   <script type="module" src="/main.js" defer></script>
+
   <title>Auction House</title>
 </head>
 
-<body class="w-dvw min-h-dvh bg-white text-gray-800 flex flex-col items-center">
-  <header id="navbar" class=" bg-white shadow-md flex justify-center w-full max-w-screen-2xl">
-    <div class="max-w-screen-2xl w-full h-16 flex gap-4 items-center justify-between px-4">
 
+<body class="w-dvw min-h-dvh bg-white text-gray-800 flex flex-col items-center">
+  <header id="navbar" class="bg-white shadow-md flex justify-center w-full max-w-screen-2xl">
+    <div class="max-w-screen-2xl w-full h-16 flex gap-4 items-center justify-between px-4">
       <div class="flex gap-4 justify-center items-center">
         <a href="/" class="flex justify-center items-center gap-4">
           <img src="/AuctionHouse-Logo.svg" alt="Auction House Logo" class="w-8 h-auto">
-          <span class="text-2xl font-bold text-blue-500 hidden lg:block">AuctionHouse</span>
+          <span class="text-2xl md:text-4xl font-bold text-blue-500 hidden lg:block">AuctionHouse</span>
         </a>
       </div>
 
@@ -25,9 +44,9 @@
         <div class="relative w-full">
           <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
           <input id="search-listings-input" type="text" placeholder="Search..."
-            class="border rounded-l-md p-2 pl-10 h-10 w-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            class="border rounded-l-md p-2 pl-10 h-10 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 text-base md:text-lg" />
         </div>
-        <button type="submit" class="bg-blue-500 text-white px-4 h-10 rounded-r-md hover:bg-blue-600">
+        <button type="submit" class="bg-blue-500 text-white px-4 h-10 rounded-r-md hover:bg-blue-600 text-sm md:text-base">
           Search
         </button>
         <div id="search-results" class="hidden absolute top-full left-0 bg-white shadow-md p-2 rounded-md w-full max-w-96 z-10 flex-col gap-4">
@@ -37,15 +56,15 @@
       <!-- Buttons Section -->
       <div class="flex gap-2">
         <a id="login-btn" href="auth/login/"
-          class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm flex justify-center items-center">
+          class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm md:text-base flex justify-center items-center">
           Log in
         </a>
         <a id="register-btn" href="auth/register/"
-          class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm flex justify-center items-center">
+          class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm md:text-base flex justify-center items-center">
           Sign up
         </a>
         <button id="logout-btn"
-          class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm flex justify-center items-center">
+          class="bg-blue-500 text-white px-4 h-10 rounded-md hover:bg-blue-600 text-sm md:text-base flex justify-center items-center">
           Log out
         </button>
       </div>
@@ -57,19 +76,19 @@
       <nav>
         <ul class="flex flex-col gap-4 md:pr-2">
           <li>
-            <a href="#" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600" aria-label="Home" title="Home">
+            <a href="#" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-sm md:text-base" aria-label="Home" title="Home">
               <i class="fa-solid fa-house" aria-hidden="true"></i>
               <span class="hidden md:inline"> Home</span>
             </a>
           </li>
           <li>
-            <a href="/create/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600" aria-label="Create Listing" title="Create Listing">
+            <a href="/create/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-sm md:text-base" aria-label="Create Listing" title="Create Listing">
               <i class="fa-regular fa-plus-square" aria-hidden="true"></i>
               <span class="hidden md:inline"> Create&nbsp;Listing</span>
             </a>
           </li>
           <li>
-            <a href="/profile/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600" aria-label="Profile" title="Profile">
+            <a href="/profile/" class="inline-flex items-center gap-1 text-blue-500 hover:underline hover:text-blue-600 text-sm md:text-base" aria-label="Profile" title="Profile">
               <i class="fa-regular fa-user" aria-hidden="true"></i>
               <span class="hidden md:inline"> Profile</span>
             </a>
@@ -77,30 +96,26 @@
         </ul>
       </nav>
     </aside>
-    
 
     <main class="w-full p-2 md:p-4 flex flex-col gap-2 md:gap-4 bg-gray-100">
       <div id="promo" class="h-40 md:h-80 bg-promo-bg bg-cover bg-center rounded-md">
-        <a
-        class="flex flex-col justify-evenly h-full w-full items-center text-center rounded-md shadow-md bg-black bg-opacity-50 hover:bg-opacity-40 transition"
-        href="auth/register/">
-        <h1 class="text-2xl md:text-4xl font-bold mb-2 text-white">
-          Sign up today and receive 1,000 FREE Credits!
-        </h1>
-        <span class="bg-blue-500 text-white px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-blue-600 text-lg md:text-2xl flex items-center justify-center">
-          Sign up now
-        </span>
-      </a>
-
+        <a class="flex flex-col justify-evenly h-full w-full items-center text-center rounded-md shadow-md bg-black bg-opacity-50 hover:bg-opacity-40 transition"
+           href="auth/register/">
+          <h1 class="text-2xl md:text-4xl font-bold mb-2 text-white">
+            Sign up today and receive 1,000 FREE Credits!
+          </h1>
+          <span class="bg-blue-500 text-white px-2 py-1 md:px-4 md:py-2 rounded-md hover:bg-blue-600 text-lg md:text-2xl flex items-center justify-center">
+            Sign up now
+          </span>
+        </a>
       </div>
 
       <div id="listings-container" class="w-full grid grid-cols-1 gap-2 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-
       </div>
     </main>
-
   </div>
-  <footer class="w-full max-w-screen-2xl p-4 bg-gray-800 text-white text-center">
+
+  <footer class="w-full max-w-screen-2xl p-4 bg-gray-800 text-white text-center text-xs md:text-sm">
     &copy; 2024 Auction House. All Rights Reserved.
   </footer>
 </body>

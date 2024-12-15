@@ -1,6 +1,5 @@
 // Import statements
 import { onLogin } from "../../ui/auth/login";
-import { setupSearch } from "../../ui/listing/searchListing";
 import { isLoggedIn } from "../../utils/authGuard";
 
 // DOM Elements
@@ -8,7 +7,6 @@ const form = document.getElementById("login-form")
 
 // Initialize features and guards
     updateLayout();
-    setupSearch();
 
 // Functions
 

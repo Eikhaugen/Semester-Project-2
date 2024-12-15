@@ -46,11 +46,11 @@ export function renderListings(listings, container) {
         const title = document.createElement("h2");
         const fullTitle = listing.title || "Untitled";
         title.textContent = truncateTitle(fullTitle, 20);
-        title.className = "text-lg font-semibold text-gray-800";
+        title.className = "text-lg md:text-2xl font-semibold text-gray-800";
 
         // Details container
         const detailsDiv = document.createElement("div");
-        detailsDiv.className = "flex justify-between items-center text-sm text-gray-600";
+        detailsDiv.className = "flex justify-between items-center text-sm md:text-base text-gray-600";
 
         // Price and bids
         const priceDiv = document.createElement("div");
@@ -58,19 +58,19 @@ export function renderListings(listings, container) {
 
         const priceSpan = document.createElement("span");
         priceSpan.textContent = `${listing._count.bids || 0} bids`;
-        priceSpan.className = "text-gray-500";
+        priceSpan.className = "text-gray-500 text-xs md:text-sm";
 
         const highestBid = listing.bids?.reduce((max, bid) => Math.max(max, bid.amount), 0) || 0;
         const highestBidSpan = document.createElement("span");
         highestBidSpan.textContent = `Highest Bid: ${highestBid} Credits`;
-        highestBidSpan.className = "font-medium text-green-600";
+        highestBidSpan.className = "font-medium text-green-600 text-sm md:text-base";
 
         priceDiv.appendChild(priceSpan);
         priceDiv.appendChild(highestBidSpan);
 
         // Time left
         const timeDiv = document.createElement("div");
-        timeDiv.className = "text-gray-500";
+        timeDiv.className = "text-gray-500 text-xs md:text-sm";
 
         const timeSpan = document.createElement("span");
         const endsAt = new Date(listing.endsAt);

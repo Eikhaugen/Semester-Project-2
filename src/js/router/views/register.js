@@ -1,5 +1,4 @@
 // Import statements
-import { setupSearch } from "../../ui/listing/searchListing";
 import { isLoggedIn } from "../../utils/authGuard";
 import { onRegister } from "../../ui/auth/register";
 
@@ -8,7 +7,6 @@ const form = document.getElementById("signup-form")
 
 // Initialize features and guards
     updateLayout();
-    setupSearch();
 
 // Functions
 
